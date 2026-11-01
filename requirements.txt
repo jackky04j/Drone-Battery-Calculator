@@ -1,0 +1,8 @@
+# This project is a static HTML / CSS / JS app.
+# There are no Python packages to install.
+#
+# Optional local preview (Python 3 stdlib only):
+#   python -m http.server 4173
+#
+# Automated checks need Node.js 18+:
+#   npm test

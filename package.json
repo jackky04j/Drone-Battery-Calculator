@@ -1,0 +1,14 @@
+{
+  "name": "drone-battery-calculator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interactive drone battery selection calculator with a portable physics engine and UI.",
+  "type": "module",
+  "scripts": {
+    "start": "python -m http.server 4173",
+    "test": "node --test tests/calculator.test.js tests/repository_structure.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

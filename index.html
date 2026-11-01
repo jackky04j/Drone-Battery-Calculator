@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drone Battery Selection Calculator</title>
+<link rel="stylesheet" href="./src/phase2/styles.css">
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <h1>Drone Battery Selection Calculator</h1>
+    <p>Every input has both a slider and a number box — use whichever you prefer. They stay in sync. Typing a value beyond the slider range is fully supported and still calculates correctly.</p>
+    <div class="tags">
+      <span class="tag">Pixhawk Orange Cube+</span>
+      <span class="tag">LiPo / Li-Ion</span>
+      <span class="tag">2S – 12S</span>
+      <span class="tag">Up to 12 motors</span>
+      <span class="tag">Up to 500 A ESC</span>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <div class="panel">
+      <div class="panel-title">Drone inputs</div>
+      <p class="hint">Drag slider  —or—  click the number box and type directly from keyboard / numpad. Values outside the slider range show amber and still calculate.</p>
+
+      <div class="group">
+        <div class="group-label">Drive system</div>
+
+        <div class="srow">
+          <div class="srow-top"><label for="s-motors">Number of motors</label><span class="range-hint">3 – 12</span></div>
+          <div class="srow-controls">
+            <input type="range"  id="s-motors"  min="3"    max="12"    step="1"    value="4">
+            <input type="number" id="n-motors"  min="1"    max="99"    step="1"    value="4"    class="nbox">
+            <span class="unit"></span>
+          </div>
+        </div>
+
+        <div class="srow">
+          <div class="srow-top"><label for="s-esc">ESC rating per motor</label><span class="range-hint">5 – 500 A</span></div>
+          <div class="srow-controls">
+            <input type="range"  id="s-esc"     min="5"    max="500"   step="5"    value="30">
+            <input type="number" id="n-esc"     min="1"    max="9999"  step="1"    value="30"   class="nbox">
+            <span class="unit">A</span>
+          </div>
+        </div>
+
+        <div class="srow">
+          <div class="srow-top"><label for="s-thrust">Max thrust per motor</label><span class="range-hint">50 – 20 000 g</span></div>
+          <div class="srow-controls">
+            <input type="range"  id="s-thrust"  min="50"   max="20000" step="50"   value="500">
+            <input type="number" id="n-thrust"  min="1"    max="999999" step="1"   value="500"  class="nbox">
+            <span class="unit">g</span>
+          </div>
+        </div>
+
+        <div class="srow">
+          <div class="srow-top"><label for="s-hover">Avg hover throttle</label><span class="range-hint">25 – 85 %</span></div>
+          <div class="srow-controls">
+            <input type="range"  id="s-hover"   min="25"   max="85"    step="1"    value="50">
+            <input type="number" id="n-hover"   min="1"    max="100"   step="1"    value="50"   class="nbox">
+            <span class="unit">%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="group-label">Battery</div>
+
+        <div class="srow">
+          <div class="srow-top"><label for="s-cells">Cell count (S)</label><span class="range-hint">2S – 12S</span></div>
+          <div class="srow-controls">
+            <input type="range"  id="s-cells"   min="2"    max="12"    step="1"    value="3">
+            <input type="number" id="n-cells"   min="1"    max="30"    step="1"    value="3"    class="nbox">
+            <span class="unit">S</span>
+          </div>
+        </div>
+
+        <div class="srow">
+          <div class="srow-top"><label for="s-cap">Capacity</label><span class="range-hint">500 – 22 000 mAh</span></div>
+          <div class="srow-controls">
+            <input type="range"  id="s-cap"     min="500"  max="22000" step="100"  value="2200">
+            <input type="number" id="n-cap"     min="100"  max="999999" step="1"   value="2200" class="nbox">
+            <span class="unit">mAh</span>
+          </div>
+        </div>
+
+        <div class="srow">
+          <div class="srow-top"><label for="s-crate">C-rating</label><span class="range-hint">5 – 200 C</span></div>
+          <div class="srow-controls">
+            <input type="range"  id="s-crate"   min="5"    max="200"   step="5"    value="30">
+            <input type="number" id="n-crate"   min="1"    max="9999"  step="1"    value="30"   class="nbox">
+            <span class="unit">C</span>
+          </div>
+        </div>
+
+        <div class="srow">
+          <div class="srow-top"><label for="s-bwt">Battery weight</label><span class="range-hint">50 – 8 000 g</span></div>
+          <div class="srow-controls">
+            <input type="range"  id="s-bwt"     min="50"   max="8000"  step="10"   value="180">
+            <input type="number" id="n-bwt"     min="1"    max="99999" step="1"    value="180"  class="nbox">
+            <span class="unit">g</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="group-label">Airframe</div>
+
+        <div class="srow">
+          <div class="srow-top"><label for="s-dwt">Drone weight (no battery)</label><span class="range-hint">100 – 30 000 g</span></div>
+          <div class="srow-controls">
+            <input type="range"  id="s-dwt"     min="100"  max="30000" step="50"   value="654">
+            <input type="number" id="n-dwt"     min="1"    max="999999" step="1"   value="654"  class="nbox">
+            <span class="unit">g</span>
+          </div>
+        </div>
+
+        <div class="srow">
+          <div class="srow-top"><label for="s-payload">Payload weight</label><span class="range-hint">0 – 10 000 g</span></div>
+          <div class="srow-controls">
+            <input type="range"  id="s-payload" min="0"    max="10000" step="50"   value="0">
+            <input type="number" id="n-payload" min="0"    max="999999" step="1"   value="0"    class="nbox">
+            <span class="unit">g</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="group-label">Battery internal resistance</div>
+
+        <div class="srow">
+          <div class="srow-top"><label for="s-ir">IR per cell</label><span class="range-hint">1 – 50 mΩ</span></div>
+          <div class="srow-controls">
+            <input type="range"  id="s-ir"      min="1"    max="50"    step="0.5"  value="4">
+            <input type="number" id="n-ir"      min="0.1"  max="9999"  step="0.1"  value="4"    class="nbox">
+            <span class="unit">mΩ</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div>
+      <div class="metrics-grid" id="metrics-grid"></div>
+
+      <div class="verdict" id="verdict-box">
+        <div class="verdict-title" id="verdict-title"></div>
+        <div class="verdict-body"  id="verdict-body"></div>
+      </div>
+
+      <div class="section-gap">
+        <h2 class="sec">Full calculation breakdown</h2>
+        <div class="breakdown">
+          <div class="bdh">
+            <span>Calculation</span>
+            <span>Formula applied</span>
+            <span style="text-align:right">Result</span>
+          </div>
+          <div id="breakdown-rows"></div>
+        </div>
+      </div>
+
+      <div class="section-gap">
+        <h2 class="sec">Reference — C-rating quick guide</h2>
+        <table class="ref-table">
+          <thead><tr><th>Scenario</th><th>Peak draw</th><th>Min C (2200 mAh)</th><th>Min C (5000 mAh)</th></tr></thead>
+          <tbody>
+            <tr><td>Light · 4×20A ESC</td><td>80 A</td><td>43C</td><td>19C</td></tr>
+            <tr><td>Mid · 4×30A ESC</td><td>120 A</td><td>65C</td><td>29C</td></tr>
+            <tr><td>Heavy · 4×40A ESC</td><td>160 A</td><td>87C</td><td>38C</td></tr>
+            <tr><td>Large hex · 6×40A ESC</td><td>240 A</td><td>130C</td><td>58C</td></tr>
+            <tr><td>Octo · 8×50A ESC</td><td>400 A</td><td>218C</td><td>96C</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-gap">
+        <h2 class="sec">Reference — T:W ratio guide</h2>
+        <table class="ref-table">
+          <thead><tr><th>T:W ratio</th><th>Behaviour</th><th>Suitable for</th></tr></thead>
+          <tbody>
+            <tr><td>&lt; 1.5 : 1</td><td>Cannot sustain stable flight</td><td>Do not fly</td></tr>
+            <tr><td>1.5 – 2.0 : 1</td><td>Marginal — poor agility</td><td>Slow cinematic only</td></tr>
+            <tr><td>2.0 – 3.0 : 1</td><td>Good — stable, adequate response</td><td>Most operations</td></tr>
+            <tr><td>3.0 – 4.0 : 1</td><td>Excellent — agile, wind handling</td><td>Sport, mapping, payload</td></tr>
+            <tr><td>&gt; 4.0 : 1</td><td>Race / acro — very aggressive</td><td>FPV racing</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-gap">
+        <h2 class="sec">Reference — battery weight % of AUW</h2>
+        <table class="ref-table">
+          <thead><tr><th>Battery % of AUW</th><th>Assessment</th></tr></thead>
+          <tbody>
+            <tr><td>&lt; 15 %</td><td>Very light pack — likely short flight time</td></tr>
+            <tr><td>15 – 30 %</td><td>Optimal range for most builds</td></tr>
+            <tr><td>30 – 40 %</td><td>Heavy pack — verify T:W ratio still ≥ 2.0</td></tr>
+            <tr><td>&gt; 40 %</td><td>Oversized — seriously impacts T:W and agility</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    Drone Battery Selection Calculator &nbsp;|&nbsp; Pixhawk Orange Cube+ &nbsp;|&nbsp;
+    Flight time uses 80% usable capacity. C-rating minimum includes 20% safety margin.
+    Voltage sag estimated from IR per cell at hover current. Always validate with bench testing.
+  </footer>
+</div>
+
+<script type="module" src="./src/phase2/ui.js"></script>
+</body>
+</html>
